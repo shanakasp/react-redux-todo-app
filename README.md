@@ -1,4 +1,8 @@
-<<<<<<< HEAD
+# Udemy Redux with React Course
+
+This Repo consist of all the practiced codes and materials
+
+https://www.udemy.com/course/redux-with-react/
 
 =======
 ![image](https://github.com/shanakasp/react-redux-todo-app-udemy-course/assets/74164029/8de6d823-73e9-4598-8d70-4b71e77325fd)
