@@ -16,7 +16,6 @@ export default function InputSubscription() {
     event.preventDefault();
     setStatus("loading");
     try {
-      // Replace timeout with real backend operation
       setTimeout(() => {
         setStatus("sent");
         dispatch(addTodo(text));
