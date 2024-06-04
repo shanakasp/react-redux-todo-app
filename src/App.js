@@ -1,8 +1,6 @@
-import { useState } from "react";
-import "react-loading-skeleton/dist/skeleton.css";
-function App() {
-  const [loading, setLoading] = useState(true);
+import "./app.css";
 
+function App() {
   return <div className="App">Shanaka</div>;
 }
 
