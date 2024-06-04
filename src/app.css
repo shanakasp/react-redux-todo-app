@@ -9,3 +9,16 @@
   margin-left: 10%;
   margin-right: 10%;
 }
+
+.App {
+  margin: -10px;
+  padding: 10px;
+  background-color: rgb(211, 232, 246);
+  height: 100vh;
+}
+
+.App {
+  background-color: rgb(211, 232, 246);
+  height: 96.3vh;
+  width: 100%;
+}
