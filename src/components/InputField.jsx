@@ -3,24 +3,27 @@ import FormControl from "@mui/joy/FormControl";
 import FormHelperText from "@mui/joy/FormHelperText";
 import FormLabel from "@mui/joy/FormLabel";
 import Input from "@mui/joy/Input";
-import * as React from "react";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTodo } from "../redux/features/todoReducer.js";
 
 export default function InputSubscription() {
-  const [data, setData] = React.useState({
-    test: "",
-    status: "initial",
-  });
+  const [text, setText] = useState("");
+  const [status, setStatus] = useState("initial");
+  const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setData((current) => ({ ...current, status: "loading" }));
+    setStatus("loading");
     try {
       // Replace timeout with real backend operation
       setTimeout(() => {
-        setData({ test: "", status: "sent" });
+        setStatus("sent");
+        dispatch(addTodo(text));
+        setText("");
       }, 1500);
     } catch (error) {
-      setData((current) => ({ ...current, status: "failure" }));
+      setStatus("failure");
     }
   };
 
@@ -38,16 +41,14 @@ export default function InputSubscription() {
           sx={{ "--Input-decoratorChildHeight": "45px" }}
           placeholder="Enter"
           required
-          value={data.test}
-          onChange={(event) =>
-            setData({ test: event.target.value, status: "initial" })
-          }
-          error={data.status === "failure"}
+          value={text}
+          onChange={(event) => setText(event.target.value)}
+          error={status === "failure"}
           endDecorator={
             <Button
               variant="solid"
               color="primary"
-              loading={data.status === "loading"}
+              loading={status === "loading"}
               type="submit"
               sx={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
             >
@@ -55,19 +56,19 @@ export default function InputSubscription() {
             </Button>
           }
         />
-        {data.status === "failure" && (
+        {status === "failure" && (
           <FormHelperText
             sx={(theme) => ({ color: theme.vars.palette.danger[400] })}
           >
-            Oops! something went wrong, please try again later.
+            Oops! Something went wrong. Please try again later.
           </FormHelperText>
         )}
 
-        {data.status === "sent" && (
+        {status === "sent" && (
           <FormHelperText
             sx={(theme) => ({ color: theme.vars.palette.primary[400] })}
           >
-            Uploading
+            Uploading...
           </FormHelperText>
         )}
       </FormControl>

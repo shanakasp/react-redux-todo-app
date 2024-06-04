@@ -1,9 +1,12 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import * as React from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 
 export default function BasicCard() {
+  const todos = useSelector((state) => state.todo);
+
   return (
     <Card sx={{ minWidth: 275, marginTop: "20px", backgroundColor: "#98C6F1" }}>
       <CardContent>
@@ -11,14 +14,11 @@ export default function BasicCard() {
           Word of the Day
         </Typography>
 
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
+        {todos.map((todo) => (
+          <Typography key={todo.id} sx={{ mb: 1.5 }} color="text.secondary">
+            {todo.text}
+          </Typography>
+        ))}
       </CardContent>
     </Card>
   );
